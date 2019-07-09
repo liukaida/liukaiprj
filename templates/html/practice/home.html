@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>题库列表</title>
+    <script src="/static/app/practice/js/jquery-1.8.3.min.js"></script>
+    <script src="/static/app/practice/js/jQuery.fontFlex.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            //320宽度的时候html字体大小是20px;、640宽度的时候html字体大小是40px; 32
+            $('html').fontFlex(18, 60, 20);
+            $('h4').fontFlex(25, 80, 20);
+            $('input').fontFlex(25, 80, 20);
+
+        });
+    </script>
+</head>
+<body>
+<form action="/" method="post">{% csrf_token %}
+    <p>孩子姓名 ：<input type="text" id="username" name="username" value="" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;" }></p>
+    <p>出题数量 ：<input type="text" id="question_count" name="question_count" value="50" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;" }></p>
+    <h4><input type="button" value="查看我的答题记录（7天内）" onclick="return get_myanswer_his();"></h4>
+    <h4><input type="button" value="查看所有人的答题记录（7天内）" onclick="return get_answer_his();"></h4>
+    <br \>
+    <br \>
+    <h4><input type="button" value="【10以内】加法" onclick="return get_question('6');"></h4>
+    <h4><input type="button" value="【10以内】减法" onclick="return get_question('7');"></h4>
+    <h4><input type="button" value="【10以内】加减混合" onclick="return get_question('6,7');"></h4>
+    <h4><input type="button" value="【10以内】10以内乘法" onclick="return get_question('3');"></h4>
+    <h4><input type="button" value="【100以内】3个数加减混合" onclick="return get_question('4');"></h4>
+    <h4><input type="button" value="【100以内】加减法混合" onclick="return get_question('1,2');"></h4>
+    <h4><input type="button" value="【100以内】加法" onclick="return get_question('1');"></h4>
+    <h4><input type="button" value="【100以内】减法" onclick="return get_question('2');"></h4>
+    <h4><input type="button" value="测试使用" onclick="return get_question('5');"></h4>
+</form>
+<br/>
+{#<h4><a href="/page/practice/list/quest?quest_type=3&num=50">10乘法50题</a></h4>#}
+{#<h4><a href="/page/practice/list/quest?quest_type=4&num=50">3个数100以内加减混合50题</a></h4>#}
+{#<h4><a href="/page/practice/list/quest?quest_type=1,2&num=50">100以内加减法混合50题</a></h4>#}
+{#<h4><a href="/page/practice/list/quest?quest_type=1&num=50">100以内加法50题</a></h4>#}
+{#<h4><a href="/page/practice/list/quest?quest_type=2&num=50">100以内减法50题</a></h4>#}
+{#<h4><a href="/page/practice/list/quest?quest_type=5&num=50">测试使用</a></h4>#}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body>
+
+<script>
+    var username;
+    var question_count;
+    function Trim(str, is_global) {
+        var result;
+        result = str.replace(/(^\s+)|(\s+$)/g, "");
+        if (is_global.toLowerCase() == "g") {
+            result = result.replace(/\s/g, "");
+        }
+        return result;
+    }
+
+
+    function get_question(quest_type) {
+        setAllParamInCookie();
+        if (username === "" || question_count === "" ){
+            alert("请填写用户名称及试题数量！");
+            return;
+        }
+        if (!isNumber(question_count)){
+            alert("试题数量必须是数字！");
+            return;
+        }
+        window.location.href = "/page/practice/list/quest?quest_type=" + quest_type + "&num=" + question_count;
+    }
+
+
+    function get_myanswer_his() {
+        setAllParamInCookie();
+        window.location.href = "/page/practice/list/answer/his?username=" + username + "&days=7";
+    }
+
+    function get_answer_his() {
+        setAllParamInCookie();
+        window.location.href = "/page/practice/list/answer/his?username=&days=7";
+    }
+
+    function isNumber(val) {
+        // 判断是否为数字
+        var regPos = /^\d+(\.\d+)?$/; //非负浮点数
+        var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+        if (regPos.test(val) || regNeg.test(val)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function getCookie(name, defaultvalue) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return defaultvalue;
+    }
+
+    function setCookie(name, value) {
+        var Days = 360;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    }
+
+    function setAllParamInCookie() {
+        username=Trim(document.getElementById("username").value,"匿名用户")
+        question_count=Trim(document.getElementById("question_count").value,"50")
+        setCookie("username",username) ;
+        setCookie("question_count",question_count) ;
+    }
+
+    document.getElementById("username").value = getCookie("username", "匿名用户");
+    document.getElementById("question_count").value = getCookie("question_count", "50");
+
+</script>
+<style type="text/css">
+    testtestbody {
+        background-color: red
+    }
+
+</style>
+</html>

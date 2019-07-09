@@ -1,0 +1,9 @@
+*/3 * * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py sync_user_data
+0 3 * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py clearsessions
+0 4 * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py clear_media
+0 1 * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py uploadlog
+
+*/2 * * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py check_deadline
+0 3 * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py clear_preview
+0 3 * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py refresh_commit_count
+*/10 * * * * . /opt/virt/vote/bin/activate && python /opt/virt/vote/vote/manage.py remind

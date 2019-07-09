@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>答题</title>
+<!--手机端需要添加-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<!--手机端需要添加---->
+<link rel="stylesheet" href="/static/app/practice/css/test_rx.css">
+<script src="/static/app/practice/js/jquery-1.8.3.min.js"></script>
+<script src="/static/app/practice/js/jQuery.fontFlex.js"></script>
+<script type="text/javascript" src="/static/app/practice/js/keyboard.js"></script>
+
+<script>
+
+
+    $(document).ready(function (e) {
+        //320宽度的时候html字体大小是20px;、640宽度的时候html字体大小是40px; 32
+        $('html').fontFlex(20, 100, 20);
+        //$('html').fontFlex(14, 20, 70);
+        $('h4').fontFlex(40, 100, 10);
+        $('input').fontFlex(40, 100, 10);
+        //每点一题，就将这题的date-title改为1，如果是最后一题，则把date-title改为0
+        $(".dxt_box li").click(function () {
+            $(this).addClass("on").siblings().removeClass("on");
+            $(this).parent(".dxt_box").parent(".kcks_title_ts").attr("date-title", 1);
+            $(this).parent(".dxt_box").parent(".last").attr("date-title", 0);
+
+        });
+
+
+        //点了上一题
+        $(".tj_zuotm_pre").click(function () {
+            myanswer[cur_sn] = $(".in_myanswer").val();
+            if (cur_sn > 0) {
+                cur_sn = cur_sn - 1;
+            }
+
+            refresh_quest();
+            $(".in_myanswer").val(myanswer[cur_sn])
+        });
+
+        //点了下一题
+        $(".tj_zuotm_next").click(function () {
+            myanswer[cur_sn] = $(".in_myanswer").val();
+            if (cur_sn < quest_maxnum - 1) {
+                cur_sn = cur_sn + 1;
+            }
+
+            //点击提交
+            if ($(".tj_zuotm_next").text() == "提　交") {
+                $(".committime").text($(".wt").text());
+                //计算结果
+                var err_count = 0;
+                var result_title = "";
+                var result_str = "";
+                var useranswer_detail = [];  //json
+                for (var i = 0; i < {{ quest_maxnum }}; i++) {
+                    if (myanswer[i] != answer[i]){
+                        var useranswer_row = {"sn":String(i+1),"question":questions[i],"myanswer":myanswer[i],"answer":answer[i],"status":"ERR_ANSWER"}
+                        result_str = result_str + "第" + String(i+1) + "题——" + questions[i] + " = " + myanswer[i] + "  ——答案：" + answer[i] + " <br \>";
+                        err_count += 1;
+                        useranswer_detail.push(useranswer_row)
+                    }
+                }
+                useranswer_detail = JSON.stringify(useranswer_detail);
+
+                result_title = "共错" + String(err_count) + "题<br \>";
+                result = result_title + result_str
+                $(".question_result").html(result)
+
+                //把小键盘收起来
+                var body = document.getElementsByTagName('body')[0];
+                var keyboard = document.getElementById("__w_l_h_v_c_z_e_r_o_divid");
+                if (keyboard){
+                    body.removeChild(keyboard)
+                }
+
+                //提交做题结果
+                $.post("/api/practice/answer/commit", {
+                    "user_name": getCookie("username", "匿名用户"),
+                    "question_uuid": rand_uniq_id,
+                    "question_count_total": quest_maxnum,
+                    "question_count_err": err_count,
+                    "useranswer_detail": useranswer_detail,
+                    "duration": $(".wt").text(),
+                    "quest_type": quest_type,
+                    },
+                    function (data) {
+                        //alert(data); // John
+                        console.log(data); //  2pm
+                    }, "json");
+
+            }
+
+            refresh_quest();
+            $(".in_myanswer").val(myanswer[cur_sn])
+        });
+
+    });
+</script>
+
+</head>
+<body>
+
+<div class="wjdt_title">
+    <h5>{{ quest_type_name }}</h5>
+    <p><span>第<span class="questnum" style=color:red>1</span>题，共{{ quest_maxnum }}题</span> <a class="clockimg" href="javascript:void(0);">⏱</a><a
+            id=wt class="wt" style=color:white></a></p>
+    <img src="/static/app/practice/images/ls.svg" style="width:3rem; position:absolute; top:1rem; left:1rem; "></div>
+<div class="dtks_box">
+    <!--题目-->
+    <div class="kcks_title_ts" sn=1>
+        <h4 class=" kctm_zzbt">100+100+100</h4>
+        <!--
+        <ul class="dxt_box">
+          <li> <em></em><span>是</span> </li>
+          <li> <em></em><span>否</span> </li>
+        </ul>
+        -->
+    </div>
+
+
+</div>
+
+<!--结束------------------------------------------>
+<input id="in_myanswer" class="in_myanswer" readonly="readonly" placeholder="点击输入答案"
+       style="text-align:center;height:50px;width:87%;outline:none;border:1px solid #1AB6FF;padding-left:10px;font-size:32px;margin-left: 18px;"/>
+
+
+<div class="kasj_db_but ">
+    <table border="1" width=100%>
+        <tr>
+            <td><a href="javascript:void(0);" class="tj_zuotm_pre">上一题</a></td>
+            <td><a href="javascript:void(0);" class="tj_zuotm_next">下一题</a></td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+    <p>总时长：<span class="committime">提交后显示</span></p>
+    <p><span class="question_result"></span></p>
+</div>
+</body>
+<script>
+    // 计时
+    s = 0;
+    m = 0;
+    dt();
+
+    function a0(x) {
+        return (x < 10 ? '0' + x : x);
+    }
+
+    function dt() {
+        s++;
+        if (s == 60) {
+            s = 0;
+            m++;
+        }
+        wt.innerHTML = a0(m) + ":" + a0(s);
+
+        setTimeout("dt()", 1000);
+    }
+
+    //点了隐藏显示时钟
+    clock_show = true;
+    $(".clockimg").click(function () {
+        if (clock_show) {
+            $(".wt").hide();
+            clock_show = false;
+        } else {
+            $(".wt").show();
+            clock_show = true;
+        }
+    });
+
+</script>
+<script>
+    var cur_sn = 0;
+    var x;
+    var quest_maxnum = {{ quest_maxnum }};
+    var questions = new Array(quest_maxnum);
+    var answer = new Array(quest_maxnum);
+    var myanswer = new Array(quest_maxnum);
+    var rand_uniq_id = "{{ rand_uniq_id }}";
+    var quest_type = "{{ quest_type }}";
+    {% for each_quest in quest_list %}
+        questions[{{ each_quest.sn }}] = "{{ each_quest.quest_title|safe }}";
+        answer[{{ each_quest.sn }}] = "{{ each_quest.answer_detail_json.0 }}";
+        myanswer[{{ each_quest.sn }}] = "";
+    {% endfor %}
+    {#questions[0] = "111+111+111";#}
+    {#questions[1] = "222+222+222";#}
+    {#questions[2] = "333+333+333";#}
+    {#questions[3] = "444+444+444";#}
+
+    //$(".kctm_zzbt").text(questions[cur_sn]);
+    refresh_quest()
+    for (x in questions) {
+        //document.write(questions[x] + "<br />");
+    }
+
+    function refresh_quest() {
+        $(".kctm_zzbt").text(questions[cur_sn]);
+        $(".questnum").text(cur_sn + 1);
+        if (cur_sn == 0) {
+            $(".tj_zuotm_pre").text("");
+        } else {
+            $(".tj_zuotm_pre").text("上一题");
+        }
+
+        if (cur_sn == quest_maxnum - 1) {
+            $(".tj_zuotm_next").text("提　交");
+        } else {
+            $(".tj_zuotm_next").text("下一题");
+        }
+
+    }
+</script>
+<script type="text/javascript">
+    //输入框小键盘
+    (function () {
+        var input1 = document.getElementById('in_myanswer');
+
+        input1.onclick = function () {
+            new KeyBoard(input1);
+        };
+
+    })();
+</script>
+<script>
+    // cookie
+    function getCookie(name, defaultvalue) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return defaultvalue;
+    }
+
+    function setCookie(name, value) {
+        var Days = 360;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    }
+
+
+</script>
+</html>
+

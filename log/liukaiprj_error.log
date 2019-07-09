@@ -1,0 +1,170 @@
+[2019-07-04 23:57:00 +0000] [439] [DEBUG] Current configuration:
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0xb611f730>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0xb611f530>
+  pre_fork: <function pre_fork at 0xb611f630>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: ./log/liukaiprj_access.log
+  group: 1000
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 4
+  proc_name: None
+  sendfile: None
+  pidfile: /tmp/liukaiprj.pid
+  umask: 0
+  on_reload: <function on_reload at 0xb611f470>
+  pre_exec: <function pre_exec at 0xb611fa70>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0xb611f830>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0xb611fe30>
+  config: /home/pi/python/liukaiprj/gunicorn.conf
+  logconfig: None
+  check_config: False
+  statsd_prefix: 
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0xb611fb30>
+  post_request: <function post_request at 0xb611fbb0>
+  user: 1000
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0xb611f8f0>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 4094
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0xb611fc70>
+  chdir: /home/pi/python/liukaiprj
+  paste: None
+  default_proc_name: liukaiprj.wsgi:application
+  errorlog: ./log/liukaiprj_error.log
+  loglevel: debug
+  capture_output: False
+  syslog_addr: udp://localhost:514
+  syslog_prefix: None
+  daemon: True
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0xb611f3b0>
+  worker_abort: <function worker_abort at 0xb611f9b0>
+  bind: ['0.0.0.0:18081']
+  raw_env: []
+  reload: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0xb611fd70>
+  timeout: 180
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+[2019-07-04 23:57:00 +0000] [439] [INFO] Starting gunicorn 19.6.0
+[2019-07-04 23:57:00 +0000] [439] [DEBUG] Arbiter booted
+[2019-07-04 23:57:00 +0000] [439] [INFO] Listening at: http://0.0.0.0:18081 (439)
+[2019-07-04 23:57:00 +0000] [439] [INFO] Using worker: sync
+[2019-07-04 23:57:00 +0000] [447] [INFO] Booting worker with pid: 447
+[2019-07-04 23:57:00 +0000] [448] [INFO] Booting worker with pid: 448
+[2019-07-04 23:57:00 +0000] [449] [INFO] Booting worker with pid: 449
+[2019-07-04 23:57:01 +0000] [450] [INFO] Booting worker with pid: 450
+[2019-07-04 23:57:01 +0000] [439] [DEBUG] 4 workers
+[2019-07-05 20:19:57 +0000] [439] [INFO] Handling signal: term
+[2019-07-05 20:19:58 +0000] [439] [INFO] Shutting down: Master
+[2019-07-08 07:28:15 +0000] [469] [DEBUG] Current configuration:
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0xb610a730>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0xb610a530>
+  pre_fork: <function pre_fork at 0xb610a630>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: ./log/liukaiprj_access.log
+  group: 1000
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 4
+  proc_name: None
+  sendfile: None
+  pidfile: /tmp/liukaiprj.pid
+  umask: 0
+  on_reload: <function on_reload at 0xb610a470>
+  pre_exec: <function pre_exec at 0xb610aa70>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0xb610a830>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0xb610ae30>
+  config: /home/pi/python/liukaiprj/gunicorn.conf
+  logconfig: None
+  check_config: False
+  statsd_prefix: 
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0xb610ab30>
+  post_request: <function post_request at 0xb610abb0>
+  user: 1000
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0xb610a8f0>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 4094
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0xb610ac70>
+  chdir: /home/pi/python/liukaiprj
+  paste: None
+  default_proc_name: liukaiprj.wsgi:application
+  errorlog: ./log/liukaiprj_error.log
+  loglevel: debug
+  capture_output: False
+  syslog_addr: udp://localhost:514
+  syslog_prefix: None
+  daemon: True
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0xb610a3b0>
+  worker_abort: <function worker_abort at 0xb610a9b0>
+  bind: ['0.0.0.0:18081']
+  raw_env: []
+  reload: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0xb610ad70>
+  timeout: 180
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+[2019-07-08 07:28:15 +0000] [469] [INFO] Starting gunicorn 19.6.0
+[2019-07-08 07:28:15 +0000] [469] [DEBUG] Arbiter booted
+[2019-07-08 07:28:15 +0000] [469] [INFO] Listening at: http://0.0.0.0:18081 (469)
+[2019-07-08 07:28:15 +0000] [469] [INFO] Using worker: sync
+[2019-07-08 07:28:15 +0000] [477] [INFO] Booting worker with pid: 477
+[2019-07-08 07:28:15 +0000] [478] [INFO] Booting worker with pid: 478
+[2019-07-08 07:28:15 +0000] [479] [INFO] Booting worker with pid: 479
+[2019-07-08 07:28:15 +0000] [480] [INFO] Booting worker with pid: 480
+[2019-07-08 07:28:15 +0000] [469] [DEBUG] 4 workers

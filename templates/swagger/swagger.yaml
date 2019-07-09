@@ -1,0 +1,425 @@
+---
+swagger: '2.0'
+info:
+  version: 1.0.0 - 20181030
+  title: 系统API
+  description: 系统API接口
+
+tags:
+  - name: Common
+    description: 通用
+  - name: User
+    description: 用户
+  - name: Practice
+    description: 练习
+
+paths:
+
+  /api/common/test:
+    get:
+      tags:
+        - Common
+      summary: 测试接口样例1
+      description: 用于测试环境是否正常
+      parameters:
+        - name: testparam1
+          in: query
+          description: 测试参数1，传入OK返回正常，非OK则返回异常
+          type: string
+          required: true
+      responses:
+        "200":
+          description: 成功结果
+          schema:
+            type: object
+            properties:
+              c:
+                type: integer
+              m:
+                type: string
+              d:
+                type: object
+                properties:
+                  test:
+                    type: string
+                    description: test返回
+
+  /api/upload/resumable:
+    get:
+      tags:
+        - Data
+      summary: 文件上传,注意增加了入参cur_user_id,如果不传入会导致查询不到该用户上传的文件
+      description: <a href='/static/resumable/main.html' target="_blank">点击打开新页面上传</a>
+
+  /api/upload/file:
+    post:
+      tags:
+      - Data
+      summary: 上传小文件,入参增加cur_user_id
+      description: |
+        上传小文件（不支持断点续传）
+      parameters:
+        - name: file
+          in: formData
+          description: 文件 [pdf, mp4, flv, img, doc, ppt, xls, zip]
+          required: true
+          type: file
+        - name: activity_id
+          in: formData
+          description: 活动ID
+          required: false
+          type: string
+        - name: cur_user_id
+          in: formData
+          description: 当前的用户id
+          type: string
+          required: false
+      responses:
+        200:
+          description: 返回结果
+          schema:
+            type: object
+            properties:
+              c:
+                type: integer
+              m:
+                type: string
+              d:
+                type: array
+                items:
+                  $ref: '#/definitions/file'
+
+
+  /api/list/file:
+    post:
+      tags:
+      - Data
+      summary: 查询该用户某次活动中上传的文件列表,入参增加cur_user_id
+      description: |
+        查询该用户某次活动中上传的文件列表（不包含已经匹配作品的文件）
+      parameters:
+        - name: activity_id
+          in: formData
+          description: 活动ID
+          type: string
+          required: true
+        - name: file_name
+          in: formData
+          description: 文件名
+          type: string
+          required: false
+        - name: work_id
+          in: formData
+          description: 作品ID
+          type: string
+          required: false
+        - name: cur_user_id
+          in: formData
+          description: 当前的用户id
+          type: string
+          required: true
+      responses:
+        200:
+          description: 返回结果
+          schema:
+            type: object
+            properties:
+              c:
+                type: integer
+              m:
+                type: string
+              d:
+                type: array
+                items:
+                  $ref: '#/definitions/file'
+
+  /api/delete/file:
+    post:
+      tags:
+      - Data
+      summary: 删除用户某活动中上传的作品原始压缩文件
+      description: |
+        删除该用户删除的文件
+      parameters:
+        - name: activity_id
+          in: formData
+          description: 活动ID
+          type: string
+          required: true
+        - name: file_id_list
+          in: formData
+          description: 文件id列表
+          type: string
+          required: true
+        - name: cur_user_id
+          in: formData
+          description: 当前的用户id
+          type: string
+          required: true
+      responses:
+        200:
+          description: 返回结果
+          schema:
+            $ref: '#/definitions/result'
+
+  /api/ueditor/controller/:
+    post:
+      tags:
+      - Data
+      summary: 上传小文件（Ueditor）
+      description: |
+        上传小文件（Ueditor）
+      parameters:
+        - name: upfile
+          in: formData
+          description: 文件
+          required: true
+          type: file
+      responses:
+        200:
+          description: 返回结果
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+              original:
+                type: string
+              type:
+                type: string
+              state:
+                type: string
+              size:
+                type: string
+
+  /api/ckupload/:
+    post:
+      tags:
+      - Data
+      summary: 上传小文件（CKeditor）
+      description: |
+        上传小文件（CKeditor）
+      parameters:
+        - name: upload
+          in: formData
+          description: 文件,仅支持PDF, MP4, FLV, SWF, IMG, DOC, PPT, XLS, ZIP，禁止上传其它类型文件
+          required: true
+          type: file
+        - name: CKEditorFuncNum
+          in: formData
+          description: CKeditor回调函数
+          type: string
+          required: false
+      responses:
+        200:
+          description: 返回结果
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+              original:
+                type: string
+              type:
+                type: string
+              state:
+                type: string
+              size:
+                type: string
+
+
+  /api/login:
+    post:
+      tags:
+      - User
+      description: |
+        用户登录
+      parameters:
+        - name: username
+          in: formData
+          description: 用户登录名
+          type: string
+          required: false
+        - name: password
+          in: formData
+          description: 登录密码
+          type: string
+          required: false
+        - name: confirm_code
+          in: query
+          description: 确认码,仅通过微信扫码注册时使用
+          type: string
+          required: false
+      responses:
+        200:
+          description: 返回结果
+          schema:
+            $ref: '#/definitions/result'
+
+  /api/logout:
+    post:
+      tags:
+      - User
+      description: |
+        登出
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/result"
+
+
+  /api/add/account:
+    post:
+      tags:
+      - User
+      description: |
+        添加基本用户，后台管理员的接口
+      parameters:
+        - name: username
+          in: formData
+          type: string
+          description: 用户名
+          required: true
+        - name: name
+          in: formData
+          description: 姓名
+          type: string
+          required: true
+        - name: sex
+          in: formData
+          description: 性别
+          type: string
+          required: true
+        - name: activity_mask
+          in: formData
+          type: string
+          required: false
+          description: 可创建活动的掩码,V3版本此参数已废弃，传了也没用
+        - name: area_id
+          description: 地域的id
+          type: string
+          in: formData
+          required: false
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/result"
+
+  /api/practice/answer/commit:
+    post:
+      tags:
+      - Practice
+      description: |
+        提交做题结果
+      parameters:
+        - name: user_name
+          in: formData
+          type: string
+          description: 用户名称
+          required: true
+        - name: question_uuid
+          in: formData
+          description: 当次题目唯一标识
+          type: string
+          required: true
+        - name: question_count_total
+          in: formData
+          description: 题目总数
+          type: string
+          required: true
+        - name: question_count_err
+          in: formData
+          type: string
+          required: true
+          description: 错题总数
+        - name: useranswer_detail
+          description: 用户答案详情JSON
+          type: string
+          in: formData
+          required: true
+        - name: duration
+          description: 时长
+          type: string
+          in: formData
+          required: true
+        - name: quest_type
+          description: 题目类型
+          type: string
+          in: formData
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/result"
+
+  /api/practice/create/quest:
+    get:
+      tags:
+      - Practice
+      description: |
+        创建题库
+      parameters:
+        - name: quest_type
+          in: query
+          type: string
+          description: 题目类型（1：100以内加）
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/result"
+
+  /api/practice/list/quest:
+    get:
+      tags:
+      - Practice
+      description: |
+        获取题目
+      parameters:
+        - name: quest_type
+          in: query
+          type: string
+          description: 题目类型（1：100以内加）
+          required: true
+        - name: num
+          in: query
+          type: string
+          description: 题目数量
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/result"
+
+# 对象定义
+definitions:
+  result:
+    type: object
+    properties:
+      c:
+        type: integer
+      m:
+        type: string
+      d:
+        type: array
+        items:
+          type: string
+
+  file:
+    type: object
+    properties:
+      id:
+        type: string
+      url:
+        type: string
+      type:
+        type: string
+      size:
+        type: string
+      name:
+        type: string

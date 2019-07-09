@@ -1,0 +1,123 @@
+* { margin: 0; padding: 0; }
+body { padding: 0; margin: 0; background: #009ece url(../images/bj.jpg) center top no-repeat; background-size: 100% auto; font-family:"冬青黑体简体中文 W3" min-width: 320px;
+color: #2f3441; max-width: 750px; }
+span, p, ul, li, h1, h2, h3, h4, h5, input { margin: 0; padding: 0; font-weight: normal; line-height: 2rem; }
+h2, h3 { font-size: 0.7rem; line-height: 100% }
+ul, li { list-style: none; }
+img { border: none; margin: 0; padding: 0; }
+a { text-decoration: none; }
+a:focus { outline: none; }
+.clear { clear: both }
+.fl { float: left }
+.fr { float: right }
+.mar_b_60 { margin-bottom: 3rem; }
+.mar_b_70 { margin-bottom: 3.5rem; }
+.orgen_color { color: #40bb6b; }
+.mt20 { margin-top: 1rem; }
+.text_c { text-align: center; }
+.c333 { color: #333; }
+.c666 { color: #666; }
+.c999 { color: #999; }
+.f10 { font-size: 0.5rem; }
+.f11 { font-size: 0.55rem; }
+.f12 { font-size: 0.6rem; }
+.f14 { font-size: 0.7rem; }
+.f16 { font-size: 0.8rem; }
+.f18 { font-size: 0.9rem; }
+.fzc { font-style: normal; }
+i { font-style: normal; }
+.hide { display: none; }
+/* 1.去除android a/button/input标签被点击时产生的边框 2.去除ios a标签被点击时产生的半透明灰色背景 */
+a, span, button, input, li, ul { -webkit-tap-highlight-color: rgba(255,0,0,0); }
+/*考试-----------------------------------------*/
+.clear_wl:after { content: "."; height: 0; visibility: hidden; display: block; clear: both; }
+.kasj_db_but { width: 90%; height: auto; background: #fab033; text-align: center; overflow: hidden; margin: 0 auto; border-radius: 3px; margin-top: 1.3rem; box-shadow: 0 0.2rem #c48b2a;   }
+.kasj_db_but a { width: 100%; display: block; float: left; text-align: center; color: #fff; line-height: 2.2rem; font-size: 0.8rem; text-shadow: 0 1px 1px #c78d2c; }
+/*移动后效果*/
+.kasj_db_but:hover { box-shadow: 0 0.1rem #c48b2a; margin-top: 1.3rem; }
+/*点击后效果*/
+.kasj_db_but:active { box-shadow: 0 0 #c48b2a; margin-top: 1.5rem; }
+.fix_but{ position:fixed; bottom:0; left:0; width:100%; border-radius:0;}
+
+
+.h50 { height: 2.5rem; }
+.kasj_db_but a.kasj_kszd_but { width: 100%; }
+.kcks_title_ts { margin: 0.4rem; padding: 0.2rem 0.1rem; text-shadow: 0 1px 1px #fff; border: 2px dotted #017c9e; border-radius: 1.2rem; }
+.kcks_title_ts .kctm_zzbt { font-size: 0.9rem; color: #2f3441; margin-bottom: 0.75rem; padding-left: 0.5rem; margin-top: 0.5rem; text-shadow: 0 1px 1px #fff; }
+.dxt_box { margin-top: 0.5rem; }
+.dxt_box li { overflow: hidden; height: auto; font-size: 0.8rem; margin-bottom: 0.5rem; text-shadow: 0 1px 1px #fff; }
+.dxt_box li em { display: block; font-style: normal; height: 0.8rem; line-height: 0.8rem; border: 1px solid #99a4bf; color: #99a4bf; text-align: center; width: 0.8rem; border-radius: 50%; float: left; margin-left: 0.5rem; }
+.dxt_box li span { display: block; margin-left: 0.2rem; float: left; line-height: 0.8rem; color: #99a4bf; font-size: 0.6rem; }
+.dxt_box li.on em { border: 1px solid #f05150; background: #f05150; color: #f05150; }
+.dxt_box li.on span { color: #f05150; }
+.tm_db_tip { position: fixed; left: 0px; bottom: 2rem; width: 100%; height: auto; padding: 0.5rem 0; font-size: 0.55rem; color: #999; background: #f7f9fc; text-align: center; overflow: hidden; }
+.tm_db_tip .dxdt_wen { float: left; margin-top: 0.25rem; margin-left: 0.5rem; }
+.tm_db_tip .kstm_fx { float: right; margin-right: 0.5rem; }
+.tm_db_tip .kstm_fx i { font-size: 0.9rem; padding-right: 0.25rem; color: #40bb6b; }
+.ckda_box { margin-top: 1rem; }
+.lxbg_tip .f11 { text-align: left; padding-left: 0.5rem; }
+.nidedf_red { color: #f10303; font-size: 2.4rem; padding: 0.5rem 0; }
+.nidedf_red i { font-size: 0.6rem; }
+.nidedf_grenn { color: #40bb6b; font-size: 2.4rem; padding: 0.5rem 0; }
+.nidedf_grenn i { font-size: 0.6rem; }
+.ckda_box .ckdw_itrem { padding-top: 0.5rem; }
+.zql_list { overflow: hidden; padding: 0.5rem 0; }
+.zql_list li { font-size: 0.55rem; float: left; width: 33.33%; text-align: center; color: #99a4bf; }
+.zql_list li p { color: #333; padding-bottom: 0.55rem; }
+.dtks_box { width: 90%; line-height: 0.9rem; font-size: 0.6rem; margin: 0.5rem auto; color: #333; background: #FFF; border: 2px solid #014964; border-radius: 1.5rem; }
+.dts_con { margin: 0.4rem; padding: 0.2rem 0.4rem; text-shadow: 0 1px 1px #fff; border: 2px dotted #017c9e; border-radius: 1.2rem; }
+.dts_con  strong{ font-weight:400; color:#f05150;}
+
+.cxjh_bt { line-height: 1.2rem; background: #40bb6b; color: #fff; border: 1px solid #ddd; width: 94%; margin: 0.5rem auto; margin-bottom: 0; box-shadow: 0 0 2px #ddd; border-radius: 5px; }
+.cxjh_bt span { line-height: 1.5rem; display: block; padding: 0.5rem; font-size: 1rem; }
+.cxjh_bt span strong { color: #f9fe70; font-weight: 400; }
+.dts_con p { margin-bottom: 1rem; }
+.tinbt { font-size: 1.5rem; color: #40bb6b; font-weight: 400; padding: 1rem; margin-top: 1rem; }
+.wjdt_title {   color: #fff; padding: 0.5rem; padding-left:4rem; }
+.wjdt_title h3 { font-size: 1.8rem; }
+.wjdt_title p { font-size: 0.7rem; color: #fff100; padding-top:0.5rem; }
+/*弹框*/
+.tck_box { display: none; position: fixed; top: 0; left: 0; z-index: 888; width: 100%; height: 100%; }
+.tckk_bj { background: #000; opacity: 0.8; position: absolute; z-index: 444; width: 100%; height: 100%; }
+.tck_box .tck_conn { position: absolute; z-index: 555; background: #FFF; box-shadow: 0 0 2px #ddd; border-radius: 3px; width: 90%; left: 50%; top: 8rem; margin-left: -45.5%; padding-bottom: 0.9rem; border: 2px solid #523b22; }
+.tck_box .tck_conn h4 { font-size: 0.75rem; text-align: center; line-height: 2.5rem; }
+.tck_box .tck_conn .qsx_shf li { float: left; width: 50%; height: 2.5rem; }
+.tck_box .tck_conn .qsx_shf a { width: 85%; display: block; font-size: 0.7rem; text-align: center; border-radius: 3px; color: #fff; line-height: 2rem; background: #fab033; box-shadow: 0 0.2rem #c48b2a; text-shadow: 0 1px 1px #c78d2c; margin: 0 auto; }
+.tck_box .tck_conn .qsx_shf a.sd { background: #ec631f; box-shadow: 0 0.2rem #bf511b; text-shadow: 0 1px 1px #bf511b; }
+/*移动后效果*/
+.tck_box .tck_conn .qsx_shf a:hover { box-shadow: 0 0.1rem #c48b2a; margin-top: 0.1rem; }
+/*点击后效果*/
+.tck_box .tck_conn .qsx_shf a:active { box-shadow: 0 0 #c48b2a; margin-top: 0.2rem; }
+/*移动后效果*/
+.tck_box .tck_conn .qsx_shf a.sd:hover { box-shadow: 0 0.1rem #bf511b; margin-top: 0.1rem; }
+/*点击后效果*/
+.tck_box .tck_conn .qsx_shf a.sd:active { box-shadow: 0 0 #bf511b; margin-top: 0.2rem; }
+.bitr_box input { display: block; height: 2rem; border: 1px solid #ddd; width: 11.5rem; color: #333; padding-left: 0.5rem; margin-left: 0.5rem; margin-bottom: 0.5rem; background: #FFF; box-shadow: 0 0 2px #ccc; }
+.bitr_box input:focus { box-shadow: 0 0 3px #000; }
+.kcks_title_ts .jgyem_ck { font-size: 0.7rem; line-height: 1.15rem; padding: 0.5rem; }
+.kcks_title_ts .jgyem_ck strong { font-weight: 400; color: #f05150; }
+.kcks_title_ts .gzewm { text-align: center; font-size: 0.6rem; margin-top: 0rem; margin-bottom: 0.5rem; }
+.kcks_title_ts .gzewm img { width: 7rem; box-shadow: 0 0 2px #ddd; }
+.dts_con .qyjj_box { line-height: 0.8rem; padding-top: 0.25rem; color:#666; }
+.kszt_one h4 { color: #ec631f; font-size: 0.65rem; text-align: center; line-height: 3rem; }
+.kszt_one .qsx_shf li { float: left; width: 50%; height: 2.5rem; }
+.kszt_one .qsx_shf a { width: 85%; display: block; font-size: 0.7rem; text-align: center; border-radius: 3px; color: #fff; line-height: 2rem; background: #fab033; box-shadow: 0 0.2rem #c48b2a; text-shadow: 0 1px 1px #c78d2c; margin: 0 auto; }
+.kszt_one .qsx_shf a.sd { background: #ec631f; box-shadow: 0 0.2rem #bf511b; text-shadow: 0 1px 1px #bf511b; }
+/*移动后效果*/
+.kszt_one .qsx_shf a:hover { box-shadow: 0 0.1rem #c48b2a; margin-top: 0.1rem; }
+/*点击后效果*/
+.kszt_one .qsx_shf a:active { box-shadow: 0 0 #c48b2a; margin-top: 0.2rem; }
+/*移动后效果*/
+.kszt_one .qsx_shf a.sd:hover { box-shadow: 0 0.1rem #bf511b; margin-top: 0.1rem; }
+/*点击后效果*/
+.kszt_one .qsx_shf a.sd:active { box-shadow: 0 0 #bf511b; margin-top: 0.2rem; }
+
+
+.tatble_table{ border-left:1px solid #ddd;border-top:1px solid #ddd;}
+.tatble_table td{ border-bottom:1px solid #ddd;border-right:1px solid #ddd;padding:0.15rem 0; padding-left:0.5rem;}
+.tatble_table .bt td{ background:#eee; color:#333; padding:0.2rem 0; padding-left:0.5rem;}
+
+
+.hqyzb_box { position:relative; z-index:1; }
+
+.hqyzb_box .hqyzm_but{ position:absolute; right:0.9rem; top:0.25rem; display: block; height: 1.5rem; line-height:1.5rem;   width: 4rem; color: #333; text-align:center; background: #fab033 ; box-shadow: 0 0 2px #ccc;}

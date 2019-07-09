@@ -1,0 +1,20 @@
+# coding=utf-8
+__author__ = 'liukai'
+
+
+ERR_QUEST_TYPE = [23001, u'错误的题目类型']
+ERR_QUEST_HASQUEST = [23002, u'题目已经生成，请勿重新生成题目']
+ERR_QUEST_NOQUEST = [23003, u'没有找到该类型题目']
+
+QUEST_TYPE_ADD100 = [1, u'100以内加法']
+QUEST_TYPE_SUB100 = [2, u'100以内减法']
+QUEST_TYPE_MUL10 = [3, u'10以内乘法']
+QUEST_TYPE_HH3 = [4, u'3个数加减混合']
+QUEST_TYPE_TEST = [5, u'测试系统试题']
+QUEST_TYPE_ADD10 = [6, u'10以内加法']
+QUEST_TYPE_SUB10 = [7, u'10以内减法']
+QUEST_TYPE_LIST = [QUEST_TYPE_ADD100, QUEST_TYPE_SUB100, QUEST_TYPE_MUL10, QUEST_TYPE_HH3, QUEST_TYPE_TEST, QUEST_TYPE_ADD10, QUEST_TYPE_SUB10]
+
+ANSWER_TYPE_SINGLE = [1, u'单选']
+ANSWER_TYPE_MULTI = [2, u'多选']
+ANSWER_TYPE_FILLSPACE = [3, u'填空']
